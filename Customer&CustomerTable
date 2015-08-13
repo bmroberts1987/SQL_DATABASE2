@@ -1,0 +1,23 @@
+CREATE DATABASE demodb
+GO
+USE demodb;
+GO
+-- Step 2: Create the Customer and CustomerOrder tables
+--    and populate them
+
+CREATE TABLE dbo.Customer
+(
+   CustomerID int IDENTITY(1,1) PRIMARY KEY,
+   CustomerName nvarchar(50) NOT NULL
+);
+GO
+INSERT dbo.Customer
+   VALUES ('Marcin Jankowski'),('Darcy Jayne');
+GO
+
+CREATE TABLE dbo.CustomerOrder
+( 
+   CustomerOrderID int IDENTITY (1000001,1) PRIMARY KEY,
+   CustomerID int NOT NULL
+     FORIEGN KEY REFERENCES dbo.Customer  (CustomerID),
+    OrderAmount decimal(18,2) NOT NULL 
